@@ -4,27 +4,24 @@ public class Task {
 
     private String title;
     private boolean active = false;
-    private int time ;
+    private int time;
 
     private int startTime = 0;
     private int endTime = 0;
     private int repeatInterval = 0;
 
 
-    private Task(String title, int time) {
-        this.title = title;
-        this.time = time;
+    public Task(String title, int time) {
+        setTime(time);
+        setTitle(title);
+        setActive(this.active);
     }
 
-
-
-    private Task(String title, int time, int repeat) {
-        this.title = title;
-        this.time = time;
-        this.repeatInterval = repeat;
+    public Task(String title, int start, int end, int repeat) {
+        setTime(start, end, repeat);
+        setTitle(title);
+        setActive(this.active);
     }
-
-
 
     public String getTitle() {
         return title;
@@ -51,7 +48,6 @@ public class Task {
         return time;
     }
 
-
     public void setTime(int start, int end, int repeat) {
         if (start >= 0) this.startTime = start;
         else System.out.println("Введите корректное время старта");
@@ -60,7 +56,6 @@ public class Task {
         if (repeat > 0) this.repeatInterval = repeat;
         else System.out.println("Введите корректное число повторений");
     }
-
 
     public int getStartTime() {
         return startTime;
@@ -71,10 +66,12 @@ public class Task {
     }
 
     public int getRepeatInterval() {
-        if (repeatInterval > 0)
-            return repeatInterval;
-        else
-            return 0;
+        return repeatInterval;
     }
+
+    public boolean isRepeated(){
+        return repeatInterval != 0;
+    };
+
 
 }
