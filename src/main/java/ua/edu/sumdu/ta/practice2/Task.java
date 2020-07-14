@@ -6,9 +6,9 @@ public class Task {
     private boolean active = false;
     private int time;
 
-    private int startTime = 0;
-    private int endTime = 0;
-    private int repeatInterval = 0;
+    private int startTime;
+    private int endTime;
+    private int repeatInterval;
 
 
     public Task(String title, int time) {
@@ -28,7 +28,8 @@ public class Task {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        if (title != null && title !="") this.title = title; // возможно надо ||
+        else System.out.println("Введите корректное название");
     }
 
     public void setActive(boolean active) {
@@ -42,6 +43,7 @@ public class Task {
     public void setTime(int time) {
         if (time >= 0) this.time = time;
         else System.out.println("Введите корректное время");
+
     }
 
     public int getTime() {
@@ -53,7 +55,7 @@ public class Task {
         else System.out.println("Введите корректное время старта");
         if (end >= start) this.endTime = end;
         else System.out.println("Введите корректное время окончания");
-        if (repeat > 0) this.repeatInterval = repeat;
+        if (repeat >= 0) this.repeatInterval = repeat;
         else System.out.println("Введите корректное число повторений");
     }
 
@@ -69,9 +71,26 @@ public class Task {
         return repeatInterval;
     }
 
-    public boolean isRepeated(){
+    public boolean isRepeated() {
         return repeatInterval != 0;
-    };
+    }
+
+    @Override
+    public String toString() {
+        if(isActive()){
+            return "";
+        } else {
+            return "-1";
+        }
+
+    }
+
+
+    public int nextTimeAfter(int time) {
+
+            return -1;
+
+    }
 
 
 }
