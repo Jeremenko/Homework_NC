@@ -28,7 +28,7 @@ public class Task {
     }
 
     public void setTitle(String title) {
-        if (title != null && title !="") this.title = title; // возможно надо ||
+        if (title != null && title != "") this.title = title; // возможно надо ||
         else System.out.println("Введите корректное название");
     }
 
@@ -37,7 +37,7 @@ public class Task {
     }
 
     public boolean isActive() {
-        return this.active;
+        return active;
     }
 
     public void setTime(int time) {
@@ -77,20 +77,27 @@ public class Task {
 
     @Override
     public String toString() {
-        if(isActive()){
-            return "";
-        } else {
-            return "-1";
-        }
+        StringBuilder sb = new StringBuilder("");
+        String result = "";
+        if (isActive()) {
 
+            if (repeatInterval == 0) {
+                sb.append("Task \"").append(title).append("\" at ").append(time);
+            } else if (repeatInterval > 0) {
+                sb.append("Task \"").append(title).append("\" from ").append(startTime).append(" to ").append(endTime).append(" every ").append(repeatInterval).append(" seconds");
+
+            }
+        } else sb.append("Task \"").append(title).append("\" is inactive");
+        result = sb.toString();
+        return result;
     }
 
 
     public int nextTimeAfter(int time) {
 
-            return -1;
+        return -1;
 
     }
 
-
 }
+
