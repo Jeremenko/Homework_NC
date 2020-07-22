@@ -41,8 +41,12 @@ public class Task {
     }
 
     public void setTime(int time) {
-        if (time >= 0) this.time = time;
-        else System.out.println("Введите корректное время");
+        if (time >= 0) {
+            this.startTime = time;
+            this.endTime = time;
+            this.time = time;
+            this.repeatInterval=0;
+        } else System.out.println("Введите корректное время");
 
     }
 
@@ -51,7 +55,10 @@ public class Task {
     }
 
     public void setTime(int start, int end, int repeat) {
-        if (start >= 0) this.startTime = start;
+        if (start >= 0) {
+            this.startTime = start;
+            this.time = start;
+        }
         else System.out.println("Введите корректное время старта");
         if (end >= start) this.endTime = end;
         else System.out.println("Введите корректное время окончания");
@@ -72,7 +79,7 @@ public class Task {
     }
 
     public boolean isRepeated() {
-        return repeatInterval != 0;
+        return repeatInterval !=0 ;
     }
 
     @Override
@@ -95,9 +102,28 @@ public class Task {
 
     public int nextTimeAfter(int time) {
 
-        return -1;
+        if (isActive()) {
+            if (this.startTime > time) {
+                return this.startTime;
+
+            } else if (time >= this.endTime) {
+                return -1;
+            } else {
+                for (int i = 0; i < (endTime - startTime) / repeatInterval; i++) {
+                    int curentAlert = startTime + repeatInterval * i; 
+                    if (curentAlert > time) {
+                        return curentAlert;
+                    }
+                }
+                return -1;
+            }
+        } else {
+            return -1;
+        }
+
 
     }
 
 }
+
 
