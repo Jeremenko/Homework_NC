@@ -3,23 +3,47 @@ package ua.edu.sumdu.ta.practice3;
 import ua.edu.sumdu.ta.practice2.Task;
 
 public class ArrayTaskList extends AbstractTaskList {
-    void add(Task task) {
+    public static String addToTitle = "[EDUCTR][TA]";
+    private int size = 0;
+    private int actualListOfTasks = 0;
+    private int numberOfTasks = 0;
+    Task[] taskList = new Task[numberOfTasks]; // надо разобраться какой тут массив правильно создать
+
+    @Override
+    public void add(Task task) {
+        if (task != null) {
+
+        }
 
     }
 
-    void remove(Task task) {
+    public void remove(Task task) {
+        if (task != null) {
+
+        }
+    }
+
+    public int size() {
+        return this.size;
+    }
+
+
+    public Task getTask(int index) {
+        if (index >= 0 && index <= size()) return taskList[index];
+        else return null;
 
     }
 
-    int size() {
-        return 0;
+    public ArrayTaskList() {
+        this.actualListOfTasks++;
+
     }
 
-    Task getTask(int index) {
-        return null;
+    public Task[] incoming(int from, int to) {
+ /*       if(from < to && from >=0 && to >=1){
+
+        }
+  */
     }
 
-    Task[] incoming(int from, int to) {
-        return new Task[0];
-    }
 }
