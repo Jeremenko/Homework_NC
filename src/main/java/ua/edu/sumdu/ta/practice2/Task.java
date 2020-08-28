@@ -1,5 +1,7 @@
 package ua.edu.sumdu.ta.practice2;
 
+import java.util.Objects;
+
 public class Task {
 
     private String title;
@@ -124,6 +126,23 @@ public class Task {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return active == task.active &&
+                time == task.time &&
+                startTime == task.startTime &&
+                endTime == task.endTime &&
+                repeatInterval == task.repeatInterval &&
+                Objects.equals(title, task.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, active, time, startTime, endTime, repeatInterval);
+    }
 }
 
 
